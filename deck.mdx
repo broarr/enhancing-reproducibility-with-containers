@@ -3,150 +3,421 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
+import { Appear, Notes, Invert, Split } from "mdx-deck";
 import { github, vsDark } from "@code-surfer/themes";
+import { Logo } from "./components";
+import "prismjs/components/prism-docker";
+import "prismjs/components/prism-shell-session";
 
 export const theme = vsDark;
 
-# Hello 👋
+## Enhancing Reproducibility
+## With Containers
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+---
+
+## :wave: I'm Bradford Roarr
+
+<Notes>
+
+- Software developer with CIS here at Brown
+- I work with cloud technologies and containerization
+
+</Notes>
+
+---
+
+## :female-technologist: I'm a developer
+
+<Notes>
+
+- Worked in private, government and now higher-ed
+- Worked for small and large companies
+- Most recently worked for the company that made the sensors in the mail room
+
+</Notes>
+
+---
+
+## :female-scientist: Not a scientist
+
+<Notes>
+
+- Never have been
+- But I still feel qualified to give this talk because
+
+</Notes>
+
+---
+
+## _Reproducibility is important!_
+
+<Notes>
+
+- For all of us, not just scientists
+- Yes, software reproducibility enables better science
+- Also reduces the set of bugs that can occur in production software
+
+</Notes>
+
+---
+
+<Invert>
+
+## This talk is not about data
+
+<Appear>
+
+### Data is its own special thing
+
+</Appear>
+
+</Invert>
+
+<Notes>
+
+- I am not qualified to talk about data
+- I'm going to focus on software reproducibility
+
+</Notes>
+
+---
+
+## Ingredients of Reproducibility
+
+<ul>
+  <Appear>
+    <li><h4>Source code</h4></li>
+    <li><h4>Third-Party libraries</h4></li>
+    <li><h4>Runtime environment</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Need each ingredient to get good reproducibility
+
+</Notes>
+
+---
+
+## Source code
+
+<ul>
+  <Appear>
+    <li><h4>Captured in version control</h4></li>
+    <li><h4>Releases tagged</h4></li>
+    <li><h4>Immutable tags</h4></li>
+  </Appear>
+</ul>
+
+---
+
+## Third-Party libraries
+
+<ul>
+  <Appear>
+    <li><h4>Captured in a package manifest file</h4></li>
+    <li><h4>Libraries pegged to <em>specific</em> version</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Peg libraries to one version, not a range
+- Select libraries that are maintained and have a corporate sponsor
+
+</Notes>
+
+---
+
+## Now what?
+
+---
+
+## Runtime environment
+
+<ul>
+  <Appear>
+    <li><h4>Capture system software requirements</h4></li>
+    <li><h4>Freeze runtime environment</h4></li>
+    <li><h4>Package runtime environment for consumption</h4></li>
+  </Appear>
+</ul>
+
+---
+
+## How?
+
+<Appear>
+
+# _Containers!_
+
+</Appear>
+
+___
+
+## Containers
+
+<ul>
+  <Appear>
+    <li><h4>Capture system software requirements</h4></li>
+    <li><h4>Freeze runtime environment</h4></li>
+    <li><h4>Package runtime environment for consumption</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- How many have hear of containers?
+- How many use containers?
+- Great abstraction for capturing environment
+- Still not perfect
+
+</Notes>
+
+---
+
+## Container Runtimes
+
+<Split>
+  <Logo>
+    <img alt="Docker" src="https://beta.docker.com/img/applicationdesigner.png"/>
+  </Logo>
+  <Logo>
+    <img alt="Singularity" src="https://singularity.lbl.gov/images/logo/logo.svg"/>
+  </Logo>
+</Split>
+
+<Notes>
+
+- Two main contenders at Brown
+- Singularity more used for research
+- Docker used for application development
+
+</Notes>
+
+---
+
+## Container Runtimes
+
+<Logo>
+  <img alt="Docker" src="https://beta.docker.com/img/applicationdesigner.png"/>
+</Logo>
+
+<Notes>
+
+- Going to use Docker today
+- I'm more familiar with Docker
+- Both are OCI compliant
+- OCI = Open Container Initiative
+
+</Notes>
 
 ---
 
 <CodeSurfer>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+```dockerfile file=src/Dockerfile
 ```
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+```diff 1,3:5
 ```
 
-```diff 1[10:14],2[15:19],3[22:27],10:12
+```diff 1 subtitle="No Docker image tag specified"
+```
 
+```diff 1 subtitle="Better - Short version of runtime "
+--- Dockerfile  2019-10-25 14:21:55.000000000 -0400
++++ Dockerfile  2019-10-25 14:41:29.000000000 -0400
+@@ -1,4 +1,4 @@
+-FROM python
++FROM python:3.8
+
+ RUN apt-get update && apt-get install -y \
+     libxml2-dev \
+```
+
+```diff 1 subtitle="Best - Full version and OS designator"
+--- Dockerfile  2019-10-25 14:21:55.000000000 -0400
++++ Dockerfile  2019-10-25 14:41:29.000000000 -0400
+@@ -1,4 +1,4 @@
+-FROM python:3.8
++FROM python:3.8.0-buster
+
+ RUN apt-get update && apt-get install -y \
+     libxml2-dev \
+```
+
+```diff 1,3:5
+```
+
+```diff 3:5 subtitle="No package versions specified"
+```
+
+```diff 3:5 subtitle="Specify exact versions for system software"
+--- Dockerfile  2019-10-25 14:21:55.000000000 -0400
++++ Dockerfile  2019-10-25 14:52:54.000000000 -0400
+@@ -1,8 +1,8 @@
+ FROM python:3.8.0-buster
+
+ RUN apt-get update && apt-get install -y \
+-    libxml2-dev \
+-    libsqlite3-dev
++    libxml2-dev=2.9.4+dfsg1-7+b3 \
++    libsqlite3-dev=3.27.2-3
+
+ COPY requirements.txt .
+ RUN pip install -r requirements.txt
+```
+
+```diff
 ```
 
 </CodeSurfer>
 
----
+<Notes>
 
-<CodeSurferColumns themes={[vsDark, github]}>
+- Contrived dockerfile
+- Builds our image, but doesn't run
+- Few common gotchas when making new images
 
-<Step>
-
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-```
-
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
-```
-
-</Step>
-
-</CodeSurferColumns>
+</Notes>
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+## Dockerfile Gotchas
+
+<ul>
+  <Appear>
+    <li><h4>Always specify full version for images</h4></li>
+    <li><h4>Always specify versions of system software</h4></li>
+    <li><h4>Understand the OS your image uses</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Different operating systems have different packages
+- Alpine linux uses a different libc (glibc vs musl)
+
+</Notes>
+
+---
+
+## Building containers
+
+<CodeSurfer>
+
+```shell-session
+$ docker build .
+```
+
+```shell-session subtitle="Better - Named image and implicit tag"
+$ docker build -t science .
+```
+
+```shell-session subtitle="Best - Named image and explicit tag"
+$ docker build -t science:1.0.7 .
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- This bit is Docker specific
+- Singularity container names based on file paths/names
+- Image is built and tagged with a well specified runtime
+- Time to gather results and do some science
+
+</Notes>
+
+---
+
+## Distributing Containers
+
+<ul>
+  <Appear>
+    <li><h4>Distribute exact copy of runtime</h4></li>
+    <li><h4>Sign to prove ownership</h4></li>
+    <li><h4>Publish public key used to sign container</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Papers written, science complete
+- Distribute container with source to reproduce experiments
+- Docker can only be distributed through hubs
+- Singularity generates a file that can be shared
+
+</Notes>
+
+---
+
+## Docker Content Trust
+
+<ul>
+  <Appear>
+    <li><h4>Everything is handled by Docker</h4></li>
+    <li><h4>Deisgned for security not just verification</h4></li>
+    <li><h4>Controlled by Notary system</h4></li>
+    <li><h4>Much more complicated than Singularity</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- DCT initialized on registry and repository
+- Admin generates delegate keys for user
+- User pushes image with DTC enabled
+- Signing and verification automatic
+
+</Notes>
+
+---
+
+## Singularity
+
+<ul>
+  <Appear>
+    <li><h4>User generates keys</h4></li>
+    <li><h4>User signs image</h4></li>
+    <li><h4>Peer verifies image signature</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Two commands
+- Sign
+- Verify
+
+</Notes>
+
+---
+
+## Containers aren't perfect
+
+<ul>
+  <Appear>
+    <li><h4>Rely on host system kernel</h4></li>
+    <li><h4>Signatures don't capture runtime changes</h4></li>
+    <li><h4>Hardware differences matter</h4></li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Document kernel differences
+- Document hardware used to produce results
+- Don't modify code at runtime
+- Don't dynamically download code or libraries at runtime
+
+</Notes>
+
+---
+
+## Questions?
+
+bradford_roarr@brown.edu
