@@ -43,8 +43,7 @@ export const theme = vsDark;
 
 <Notes>
 
-- Never have been
-- But I still feel qualified to give this talk because
+- Here to provide a developers perspective on reproducibility
 
 </Notes>
 
@@ -274,6 +273,22 @@ ___
 ```diff
 ```
 
+```diff 18:19
+```
+
+```diff 18:20
+--- Dockerfile  2019-10-25 22:33:13.000000000 -0400
++++ Dockerfile.2        2019-10-28 07:56:14.000000000 -0400
+@@ -15,5 +15,6 @@
+ WORKDIR /app
+ COPY . ./
+
++ENV RANDOM_SEED=1024
+ ENTRYPOINT ["python"]
+-CMD ["my-script.py"]
++CMD ["my-script.py", "special", "arguments", "here"]
+```
+
 </CodeSurfer>
 
 <Notes>
@@ -293,6 +308,7 @@ ___
     <li><h4>Always specify full version for images</h4></li>
     <li><h4>Always specify versions of system software</h4></li>
     <li><h4>Understand the OS your image uses</h4></li>
+    <li><h4>Capture arguments and env variables</h4></li>
   </Appear>
 </ul>
 
